@@ -96,15 +96,15 @@ export const useSurveyState = (): [SurveyState, SurveyActions] => {
       
       // Show different messages based on share count
       if (newValue === 5) {
-        toast.success("Halfway milestone reached! You've completed 5 shares.");
+        toast.success("Halfway there! You've made 5 valuable connections.");
       } else if (newValue === 10) {
-        toast.success("All shares completed! You can now submit your application.");
+        toast.success("All connections complete! Your profile is now active.");
         setShowConfetti(true);
         
         // Hide confetti after 3 seconds
         setTimeout(() => setShowConfetti(false), 3000);
       } else {
-        toast.success(`Share ${newValue} complete! ${10 - newValue} more to unlock submission.`);
+        toast.success(`${newValue} connections made! ${10 - newValue} needed to activate profile.`);
       }
       
       return newValue;
