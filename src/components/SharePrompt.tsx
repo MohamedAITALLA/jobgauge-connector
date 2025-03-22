@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from "@/lib/utils";
-import { Share2, CheckCircle2, Trophy, Check } from 'lucide-react';
+import { Share2, CheckCircle2, Trophy, Check, MessageCircle } from 'lucide-react';
 
 interface SharePromptProps {
   sharesCompleted: number;
@@ -23,6 +23,15 @@ const SharePrompt: React.FC<SharePromptProps> = ({
   
   // Milestone reached (5th or 10th share)
   const isMilestone = sharesCompleted === 5 || sharesCompleted === totalRequired;
+
+  // Share via WhatsApp function
+  const shareViaWhatsApp = () => {
+    const text = "Check out this exclusive LinkedIn job opportunity for a Senior Product Designer position at a Fortune 500 Tech Company! Apply now:";
+    const url = window.location.href;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`;
+    window.open(whatsappUrl, '_blank');
+    onShare(); // Count the share
+  };
 
   return (
     <div
@@ -113,13 +122,23 @@ const SharePrompt: React.FC<SharePromptProps> = ({
         </div>
         
         <div className="flex flex-col gap-3 pt-2">
-          <button
-            onClick={onShare}
-            className="btn-primary w-full"
-          >
-            <Share2 className="mr-2 h-4 w-4" />
-            Share Opportunity
-          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button
+              onClick={onShare}
+              className="btn-primary w-full"
+            >
+              <Share2 className="mr-2 h-4 w-4" />
+              Share Opportunity
+            </button>
+            
+            <button
+              onClick={shareViaWhatsApp}
+              className="btn-primary w-full bg-green-600 hover:bg-green-700"
+            >
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Share via WhatsApp
+            </button>
+          </div>
           
           <button
             onClick={onComplete}
