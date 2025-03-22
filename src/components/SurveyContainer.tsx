@@ -9,6 +9,7 @@ import SurveyHeader from './survey/SurveyHeader';
 import SocialProof from './survey/SocialProof';
 import CompletionScreen from './survey/CompletionScreen';
 import ConfettiEffect from './survey/ConfettiEffect';
+import UserInfoForm from './survey/UserInfoForm';
 
 const SurveyContainer: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,14 +22,17 @@ const SurveyContainer: React.FC = () => {
       isCompleted,
       showConfetti,
       isOnSharingScreen,
+      isOnUserInfoScreen,
       currentQuestion,
       currentAnswer,
       totalSteps,
+      userInfo,
     },
     {
       handleNext,
       handlePrevious,
       handleAnswerChange,
+      handleUserInfoChange,
       handleShare,
       handleComplete,
       resetSurvey,
@@ -54,7 +58,7 @@ const SurveyContainer: React.FC = () => {
             
             {/* Survey content */}
             <div className="min-h-[300px] transition-all duration-300">
-              {!isOnSharingScreen ? (
+              {!isOnSharingScreen && !isOnUserInfoScreen ? (
                 currentQuestion && (
                   <QuestionCard
                     question={currentQuestion}
@@ -66,6 +70,13 @@ const SurveyContainer: React.FC = () => {
                     isLast={currentStep === questions.length}
                   />
                 )
+              ) : isOnUserInfoScreen ? (
+                <UserInfoForm
+                  userInfo={userInfo}
+                  onUserInfoChange={handleUserInfoChange}
+                  onNext={handleNext}
+                  onPrevious={handlePrevious}
+                />
               ) : (
                 <SharePrompt
                   sharesCompleted={sharesCompleted}
@@ -82,6 +93,7 @@ const SurveyContainer: React.FC = () => {
               totalSteps={totalSteps}
               isOnSharingScreen={isOnSharingScreen}
               sharesCompleted={sharesCompleted}
+              isOnUserInfoScreen={isOnUserInfoScreen}
             />
           </>
         ) : (

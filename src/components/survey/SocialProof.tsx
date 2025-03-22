@@ -6,6 +6,7 @@ interface SocialProofProps {
   currentStep: number;
   totalSteps: number;
   isOnSharingScreen: boolean;
+  isOnUserInfoScreen?: boolean;
   sharesCompleted: number;
 }
 
