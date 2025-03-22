@@ -25,6 +25,9 @@ const SocialProof: React.FC<SocialProofProps> = ({
         <p className="text-muted-foreground">
           <strong className="text-foreground">637 people</strong> have applied to this position in the last 24 hours.
           Your completion progress is <strong className="text-primary">{progressPercentage}%</strong> ahead of other applicants.
+          {isOnSharingScreen && (
+            <span> Share via WhatsApp to increase your application visibility.</span>
+          )}
         </p>
       </div>
     </div>

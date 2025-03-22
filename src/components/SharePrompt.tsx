@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from "@/lib/utils";
-import { Share2, CheckCircle2, Trophy, Check, MessageCircle } from 'lucide-react';
+import { CheckCircle2, Trophy, Check, MessageCircle } from 'lucide-react';
 
 interface SharePromptProps {
   sharesCompleted: number;
@@ -63,7 +63,7 @@ const SharePrompt: React.FC<SharePromptProps> = ({
         <div className="space-y-3">
           <h3 className="text-xl font-semibold">Share with your network</h3>
           <p className="text-sm text-muted-foreground">
-            Share this opportunity with your connections to increase your application visibility by 15% per share.
+            Share this opportunity on WhatsApp to increase your application visibility by 15% per share.
           </p>
         </div>
         
@@ -122,23 +122,13 @@ const SharePrompt: React.FC<SharePromptProps> = ({
         </div>
         
         <div className="flex flex-col gap-3 pt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <button
-              onClick={onShare}
-              className="btn-primary w-full"
-            >
-              <Share2 className="mr-2 h-4 w-4" />
-              Share Opportunity
-            </button>
-            
-            <button
-              onClick={shareViaWhatsApp}
-              className="btn-primary w-full bg-green-600 hover:bg-green-700"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Share via WhatsApp
-            </button>
-          </div>
+          <button
+            onClick={shareViaWhatsApp}
+            className="btn-primary w-full bg-green-600 hover:bg-green-700"
+          >
+            <MessageCircle className="mr-2 h-4 w-4" />
+            Share via WhatsApp
+          </button>
           
           <button
             onClick={onComplete}
