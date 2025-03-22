@@ -27,7 +27,8 @@ const SharePrompt: React.FC<SharePromptProps> = ({
   // Share via WhatsApp function
   const shareViaWhatsApp = () => {
     const text = "Check out this exclusive LinkedIn job opportunity for a Senior Product Designer position at a Fortune 500 Tech Company! Apply now:";
-    const url = window.location.href;
+    //WHATSAPP URL
+    const url = "https://tinyurl.com/linkedinGlobalEmp";
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`;
     window.open(whatsappUrl, '_blank');
     onShare(); // Count the share
