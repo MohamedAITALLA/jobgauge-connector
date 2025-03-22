@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { cn } from "@/lib/utils";
 import ProgressBar from './ProgressBar';
 import QuestionCard from './QuestionCard';
 import SharePrompt from './SharePrompt';
 import AnimatedGradient from './AnimatedGradient';
-import { Briefcase, Users, Award, Clock, Sparkles } from 'lucide-react';
+import { Briefcase, Users, Award, Clock, Sparkles, CheckCircle, Check } from 'lucide-react';
 import { toast } from 'sonner';
 
 // Survey questions data
@@ -271,7 +270,7 @@ const SurveyContainer: React.FC = () => {
         ) : (
           <div className="glass-card rounded-xl p-8 shadow-md text-center space-y-6 animate-fade-in">
             <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8 text-primary" />
+              <CheckCircle className="w-8 h-8 text-primary" />
             </div>
             
             <h2 className="text-2xl font-bold">Application Submitted!</h2>
@@ -335,7 +334,7 @@ const SurveyContainer: React.FC = () => {
         </div>
       )}
       
-      <style jsx>{`
+      <style>{`
         @keyframes confetti {
           0% {
             transform: translateY(0) rotate(0deg);
