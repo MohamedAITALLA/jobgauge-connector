@@ -14,8 +14,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 16 100% 50%; /* Temu orange #FF4C00 */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 214 32% 91%;
     --secondary-foreground: 215 25% 27%;
@@ -113,33 +113,104 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full;
+    background-color: rgba(var(--muted-foreground), 0.3);
+    border-radius: 9999px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground/50;
+    background-color: rgba(var(--muted-foreground), 0.5);
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white bg-opacity-70 backdrop-blur-lg border border-white/20 shadow-lg;
+    background-color: white;
+    opacity: 0.7;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  
+  .temu-gradient {
+    background-image: linear-gradient(to right, #FF4C00, #FF7A00);
+  }
+  
+  .bg-temu-gradient {
+    background-image: linear-gradient(to right, #FF4C00, #FF7A00);
   }
   
   .survey-input {
-    @apply min-h-[44px] w-full rounded-md border border-input bg-background px-3 py-2 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+    min-height: 44px;
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid var(--input);
+    background-color: var(--background);
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
   }
   
   .animated-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100;
+    position: relative;
+}
+.animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    background-color: var(--primary);
+    transition: transform 300ms;
+}
+.animated-underline:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
   }
   
   .btn-primary {
-    @apply inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground shadow-md transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/70 focus:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    background-color: var(--primary);
+    padding: 1.5rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-foreground);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.2s;
+  }
+  
+  /* Accessibility class for screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+  }
+  
+  /* High contrast focus styles for keyboard navigation */
+  .focus-visible-ring {
+    outline: none;
+    ring-width: 2px;
+    ring-color: var(--primary);
+    @apply ring-offset-2;
   }
   
   .pulse-border {
-    @apply border border-transparent;
+    border: 1px solid transparent;
     animation: pulse-border 2s infinite;
   }
   
@@ -153,6 +224,20 @@
   }
   
   .shimmer {
-    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-shimmer-gradient;
+    position: relative;
+    overflow: hidden;
+}
+.shimmer::before {
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    content: "";
   }
 }

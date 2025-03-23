@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { format, differenceInYears } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { getCountryCodeByCountry, formatPhoneWithCountryCode } from "@/data/countryCodes";
+import { jobProfiles } from "@/data/jobProfiles";
 
 interface UserInfoFormProps {
   onNext: () => void;
@@ -19,6 +20,7 @@ interface UserInfoFormProps {
 }
 
 export interface UserInfo {
+  jobProfileId: any;
   fullName: string;
   birthDate: Date | undefined;
   gender: string;
@@ -107,6 +109,10 @@ const UserInfoForm: React.FC<UserInfoFormProps> = ({
       newErrors.phone = "Phone number is required";
     } else if (!/^[0-9\s]+$/.test(userInfo.phone)) {
       newErrors.phone = "Please enter a valid phone number (digits only)";
+    }
+    
+    if (!userInfo.jobProfileId) {
+      newErrors.jobProfileId = "Please select a job position";
     }
     
     setErrors(newErrors);
@@ -299,6 +305,26 @@ const UserInfoForm: React.FC<UserInfoFormProps> = ({
             </div>
             {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
             <p className="text-xs text-muted-foreground">Country code will be automatically added based on your country selection</p>
+          </div>
+          
+          {/* Job Position */}
+          <div className="space-y-2">
+            <Label htmlFor="jobProfileId">Job Position</Label>
+            <select
+              id="jobProfileId"
+              value={userInfo.jobProfileId}
+              onChange={(e) => handleChange("jobProfileId", e.target.value)}
+              className={cn(
+                "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                errors.jobProfileId ? "border-destructive" : ""
+              )}
+            >
+              <option value="" disabled>Select a job position</option>
+              {jobProfiles.map((profile) => (
+                <option key={profile.id} value={profile.id}>{profile.title} - {profile.department}</option>
+              ))}
+            </select>
+            {errors.jobProfileId && <p className="text-xs text-destructive">{errors.jobProfileId}</p>}
           </div>
         </div>
         

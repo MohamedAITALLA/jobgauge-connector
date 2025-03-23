@@ -25,6 +25,7 @@ export interface UserInfo {
   country: string;
   email: string;
   phone: string;
+  jobProfileId: string;
 }
 
 interface SurveyActions {
@@ -50,7 +51,8 @@ export const useSurveyState = (): [SurveyState, SurveyActions] => {
     gender: "",
     country: "",
     email: "",
-    phone: ""
+    phone: "",
+    jobProfileId: "creative-design"
   });
   
   const containerRef = useRef<HTMLDivElement>(null);

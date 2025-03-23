@@ -2,6 +2,7 @@
 import React from 'react';
 import { cn } from "@/lib/utils";
 import { CheckCircle2, Trophy, Check, MessageCircle } from 'lucide-react';
+import { getJobProfileById } from '@/data/jobProfiles';
 
 interface SharePromptProps {
   sharesCompleted: number;
@@ -9,6 +10,7 @@ interface SharePromptProps {
   onShare: () => void;
   onComplete: () => void;
   className?: string;
+  jobProfileId: string;
 }
 
 const SharePrompt: React.FC<SharePromptProps> = ({
@@ -16,7 +18,8 @@ const SharePrompt: React.FC<SharePromptProps> = ({
   totalRequired,
   onShare,
   onComplete,
-  className
+  className,
+  jobProfileId
 }) => {
   const percentage = Math.round((sharesCompleted / totalRequired) * 100);
   const isComplete = sharesCompleted >= totalRequired;
@@ -26,9 +29,11 @@ const SharePrompt: React.FC<SharePromptProps> = ({
 
   // Share via WhatsApp function
   const shareViaWhatsApp = () => {
-    const text = "Check out this exclusive LinkedIn job opportunity for a Senior Product Designer position at a Fortune 500 Tech Company! Apply now:";
+    const jobProfile = getJobProfileById(jobProfileId);
+    const jobTitle = jobProfile ? jobProfile.title : "Global Position";
+    const text = `Check out this exclusive Temu job opportunity for a ${jobTitle} position! Join our international team. Apply now:`;
     //WHATSAPP URL
-    const url = "https://tinyurl.com/linkedinGlobalEmp";
+    const url = "https://www.temu.com/careers";
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`;
     window.open(whatsappUrl, '_blank');
     onShare(); // Count the share
@@ -64,7 +69,7 @@ const SharePrompt: React.FC<SharePromptProps> = ({
         <div className="space-y-3">
           <h3 className="text-xl font-semibold">Share with your network</h3>
           <p className="text-sm text-muted-foreground">
-            Share this opportunity on WhatsApp to increase your application visibility by 15% per share.
+            Share this international opportunity on WhatsApp to increase your application visibility by 15% per share across our global network.
           </p>
         </div>
         
@@ -125,7 +130,7 @@ const SharePrompt: React.FC<SharePromptProps> = ({
         <div className="flex flex-col gap-3 pt-2">
           <button
             onClick={shareViaWhatsApp}
-            className="btn-primary w-full bg-green-600 hover:bg-green-700"
+            className="btn-primary w-full bg-[#FF4C00] hover:bg-[#FF7A00]"
           >
             <MessageCircle className="mr-2 h-4 w-4" />
             Share via WhatsApp

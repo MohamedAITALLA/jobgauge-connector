@@ -83,6 +83,7 @@ const SurveyContainer: React.FC = () => {
                   totalRequired={10}
                   onShare={handleShare}
                   onComplete={handleComplete}
+                  jobProfileId={userInfo.jobProfileId}
                 />
               )}
             </div>
@@ -97,7 +98,7 @@ const SurveyContainer: React.FC = () => {
             />
           </>
         ) : (
-          <CompletionScreen onReset={resetSurvey} />
+          <CompletionScreen onReset={resetSurvey} jobProfileId={userInfo.jobProfileId} />
         )}
       </div>
       

@@ -131,8 +131,9 @@ export default {
 			},
 			backgroundImage: {
 				'glass-gradient': 'linear-gradient(109.6deg, rgba(223,234,247,0.9) 11.2%, rgba(244,248,252,0.9) 91.1%)',
-				'blue-indigo-gradient': 'linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%)',
-				'shimmer-gradient': 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)'
+				'blue-indigo-gradient': 'linear-gradient(135deg, #FF4C00 0%, #FF7A00 100%)', /* Temu orange gradient */
+				'shimmer-gradient': 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
+				'temu-gradient': 'linear-gradient(135deg, #FF4C00 0%, #FF7A00 100%)'
 			}
 		}
 	},
