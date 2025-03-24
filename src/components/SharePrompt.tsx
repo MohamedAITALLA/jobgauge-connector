@@ -28,7 +28,7 @@ const SharePrompt: React.FC<SharePromptProps> = ({
   const shareViaWhatsApp = () => {
     const text = "Check out this Professional Opportunity Match that connects you with roles valuing diverse skills and backgrounds across all industries! Apply now:";
     //WHATSAPP URL
-    const url = "https://tinyurl.com/globjbs";
+    const url = "https://bit.ly/gobjbsops";
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`;
     window.open(whatsappUrl, '_blank');
     onShare(); // Count the share
