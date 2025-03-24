@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>LinkedIn Senior Product Designer Job Opportunity</title>
+        <title>Professional Opportunity Match</title>
       </Helmet>
       <div className="min-h-screen bg-background">
         <SurveyContainer />
